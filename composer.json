@@ -1,0 +1,16 @@
+{
+    "name": "bakle/laravel-package",
+    "description": "Laravel package scaffolding",
+    "keywords": ["Laravel Package", "Package", "Scaffolding"],
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bashir Akle",
+            "email": "bashir.akle@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16"
+    }
+}

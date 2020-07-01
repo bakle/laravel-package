@@ -1,0 +1,38 @@
+{
+    "name": "vendor/package-name",
+    "description": "Package description",
+    "keywords": ["package", "laravel", "vendor"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Author Name",
+            "email": "author.name@mail.com"
+        }
+    ],
+    "require": {
+        "laravel/framework": "^7.18"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.2",
+        "orchestra/testbench": "^5.3",
+        "friendsofphp/php-cs-fixer": "^2.16"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vendor\\Package\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Vendor\\Package\\Test": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Vendor\\Package\\PackageServiceProvider"
+            ]
+        }
+    }
+}
