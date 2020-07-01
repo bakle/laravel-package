@@ -3,6 +3,7 @@
 namespace Vendor\Package;
 
 use Illuminate\Support\ServiceProvider;
+use Vendor\Package\Console\Commands\FooCommand;
 
 class PackageServiceProvider extends ServiceProvider
 {
@@ -33,6 +34,8 @@ class PackageServiceProvider extends ServiceProvider
         $this->loadTranslations();
 
         $this->loadViews();
+
+        $this->loadCommands();
     }
 
     /**
@@ -72,19 +75,21 @@ class PackageServiceProvider extends ServiceProvider
      */
     private function loadFactories(): void
     {
-        $this->loadFactoriesFrom(__DIR__.'/../factories');
+        $this->loadFactoriesFrom(__DIR__.'/../database/factories');
     }
 
     /**
-     * It loads the translations from the package's
-     * translations path.
+     * It loads the lang from the package's
+     * lang path.
      */
     private function loadTranslations(): void
     {
-        $this->loadTranslationsFrom(__DIR__.'/../translations', 'package');
+        $langPath = __DIR__.'/../resources/lang';
+
+        $this->loadTranslationsFrom($langPath, 'package');
 
         $this->publishes([
-            __DIR__.'/../translations' => resource_path('lang/vendor/package'),
+            $langPath => resource_path('lang/vendor/package'),
         ]);
     }
 
@@ -94,25 +99,23 @@ class PackageServiceProvider extends ServiceProvider
      */
     private function loadViews(): void
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'package');
+        $viewsPath = __DIR__.'/../resources/views';
+
+        $this->loadViewsFrom($viewsPath, 'package');
 
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/package'),
+            $viewsPath => resource_path('views/vendor/package'),
         ]);
     }
 
     /**
-     * It loads the translations from the package's
-     * translations path.
+     * It loads the commands from the package's
+     * commands path.
      */
     private function loadCommands(): void
     {
         $this->commands([
-            //FooCommand::class,
-        ]);
-
-        $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/package'),
+            FooCommand::class,
         ]);
     }
 }
